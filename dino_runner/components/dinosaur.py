@@ -6,7 +6,7 @@ class Dinosaur:
     Y_POS = 310
     Y_POS_DUCK = 340
     JUMP_VEL = 8.5
-    SUPERJUMP_VEL = 10.5
+    SUPERJUMP_VEL = 8.5
     DIVE_VEL = 8.5
 
     def __init__(self):
@@ -99,8 +99,8 @@ class Dinosaur:
     def superjump(self):
         self.image = JUMPING
         if self.dino_superjump:
-            self.dino_rect.y -= self.superjump_vel * 6
-            self.superjump_vel -= 0.9
+            self.dino_rect.y -= self.superjump_vel * 4
+            self.superjump_vel -= 0.8
         if self.superjump_vel < -self.SUPERJUMP_VEL:
             self.dino_rect.y = self.Y_POS
             self.dino_superjump = False
@@ -111,9 +111,9 @@ class Dinosaur:
         self.jump_vel = self.JUMP_VEL
         self.superjump_vel = self.SUPERJUMP_VEL
         if self.dino_dive:
-            self.dino_rect.y += self.dive_vel *2
-            self.dive_vel += 0.8
-        if self.dive_vel > +self.DIVE_VEL:
+            self.dino_rect.y -= self.dive_vel *4
+            self.dive_vel -= 0.8
+        if self.dive_vel < -self.DIVE_VEL:
             self.dino_rect.y = self.Y_POS
             self.dino_dive = False
             self.dive_vel = self.DIVE_VEL
