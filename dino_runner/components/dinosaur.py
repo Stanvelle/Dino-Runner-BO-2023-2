@@ -23,6 +23,7 @@ class Dinosaur:
         self.jump_vel = self.JUMP_VEL
         self.superjump_vel = self.SUPERJUMP_VEL
         self.dive_vel = self.DIVE_VEL
+        self.dino_dead = False
 
     def update(self, user_input):
         if self.dino_jump:
