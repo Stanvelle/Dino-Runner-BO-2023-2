@@ -32,7 +32,7 @@ class BackgroundManager:
         for cloud in self.cloud:
             if cloud.rect.x < -cloud.rect.width:
                 self.cloud.pop()
-            cloud.update(game_speed, player)
+            cloud.update(game_speed)
         #for cloud in self.cloud2:
         #    if cloud.rect.x < -cloud.rect.width:
         #        self.cloud2.pop()

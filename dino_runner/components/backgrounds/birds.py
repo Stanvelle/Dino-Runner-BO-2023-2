@@ -10,7 +10,7 @@ class Birds(Background):
         self.type = random.randint(0, 1)
         image = BIRD[self.type]
         super().__init__(image)
-        self.rect.y = random.randint(0, 300)
+        self.rect.y = random.randint(0, 250)
 
     def update(self, game_speed, player):
         self.rect.x -= game_speed
