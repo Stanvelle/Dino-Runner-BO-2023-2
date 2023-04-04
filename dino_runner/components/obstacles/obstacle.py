@@ -1,5 +1,5 @@
 from dino_runner.utils.constants import SCREEN_WIDTH
-import pygame
+
 
 class Obstacle:
     def __init__(self, image):

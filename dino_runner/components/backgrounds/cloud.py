@@ -9,4 +9,4 @@ class Cloud(Background):
     def __init__(self):
         image = CLOUD
         super().__init__(image)
-        self.rect.y = random.randint(10, 200)
+        self.rect.y = random.randint(0, 200)
