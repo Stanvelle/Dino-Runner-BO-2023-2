@@ -1,6 +1,4 @@
-
 from dino_runner.components.obstacles.cactus import Cactus
-
 
 class ObstacleManager:
     def __init__(self):
