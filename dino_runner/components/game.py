@@ -15,7 +15,7 @@ class Game:
         self.playing = False
         self.game_speed = 20
         self.x_pos_bg = 0
-        self.y_pos_bg = 380
+        self.y_pos_bg = 380 #-70
         self.x_pos_cl = 200
         self.y_pos_cl = 180
         self.player = Dinosaur()
@@ -23,8 +23,12 @@ class Game:
         self.background_manager = BackgroundManager()
         self.power_up_manager = PowerUpManager()
         self.points = 0
+        #self.jump_sound = pygame.mixer.Sound("dino_runner/assets/Ost/melody-loop.mp3")
+        #self.jump_sound.set_volume(0.5)
 
     def run(self):
+        bg_Music = pygame.mixer.Sound("dino_runner/assets/Ost/melody-loop.mp3")
+        bg_Music.play()
         # Game loop: events - update - draw
         self.playing = True
         while self.playing:

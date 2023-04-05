@@ -11,6 +11,8 @@ IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
 # Assets Constants
 ICON = pygame.image.load(os.path.join(IMG_DIR, "DinoWallpaper.png"))
 
+
+
 RUNNING = [
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun1.png")),
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun2.png")),
@@ -63,6 +65,10 @@ LARGE_CACTUS = [
 BIRD = [
     pygame.image.load(os.path.join(IMG_DIR, "Bird/Bird1.png")),
     pygame.image.load(os.path.join(IMG_DIR, "Bird/Bird2.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Bird/RedBird1.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Bird/RedBird2.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Bird/BlueBird1.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Bird/BlueBird2.png")),
 ]
 
 CLOUD = pygame.image.load(os.path.join(IMG_DIR, 'Other/Cloud.png'))

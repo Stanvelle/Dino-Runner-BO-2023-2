@@ -7,7 +7,7 @@ import random
 class Birds(Background):
 
     def __init__(self):
-        self.type = random.randint(0, 1)
+        self.type = random.randint(0, 5)
         image = BIRD[self.type]
         super().__init__(image)
         self.rect.y = random.randint(0, 250)
