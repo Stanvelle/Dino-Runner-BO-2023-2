@@ -3,7 +3,7 @@ from dino_runner.utils.constants import SCREEN_WIDTH
 
 class PowerUp:
     Y_POS_POWER_UP = 125
-    POWER_UP_DURATION = 500
+    POWER_UP_DURATION = 5000
 
     def __init__(self, image, type):
         self.image = image

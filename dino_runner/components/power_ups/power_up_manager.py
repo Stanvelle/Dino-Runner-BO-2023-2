@@ -5,7 +5,7 @@ import random
 class PowerUpManager():
     def __init__(self):
         self.power_ups = []
-        self.choice = random.randint(0,1)
+        self.choice = 0#random.randint(0,1)
         if self.choice == 0:
             self.select = Shield()
         else:

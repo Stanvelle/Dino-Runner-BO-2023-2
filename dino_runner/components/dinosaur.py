@@ -35,6 +35,11 @@ class Dinosaur:
         self.dive_vel = self.DIVE_VEL
         self.fly_vel = self.FLY_VEL
         self.dino_dead = False
+        self.jump_sound = pygame.mixer.Sound("dino_runner/assets/Sounds/jump_sound.wav")
+        self.jump_sound.set_volume(0.5)
+        self.shield = False
+        self.hammer = False
+        self.time_up_power_up = 0
 
     def update(self, user_input):
         if self.dino_jump:
@@ -95,6 +100,11 @@ class Dinosaur:
         if self.step_index >= 10:
             self.step_index = 0
 
+        if self.shield:
+            time_to_show = round((self.time_up_power_up - pygame.time.get_ticks()) / 1000, 2)
+            if time_to_show < 0:
+                self.reset()
+
     def draw(self, screen):
         screen.blit(self.image, self.dino_rect)
 
@@ -125,8 +135,16 @@ class Dinosaur:
     def set_power_up(self,power_up):
         if power_up.type == SHIELD_TYPE:
            self.type = SHIELD_TYPE
+           self.shield = True
+           self.time_up_power_up = power_up.time_up
+
         elif power_up.type == HAMMER_TYPE:
            self.type = HAMMER_TYPE
+
+    def reset(self):
+        self.type = DEFAULT_TYPE
+        self.shield = False
+        self.time_up_power_up = 0
 
     def superjump(self):
         self.image = self.jump_img[self.type]
