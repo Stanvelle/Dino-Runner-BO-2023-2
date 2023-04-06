@@ -11,7 +11,9 @@ IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
 # Assets Constants
 ICON = pygame.image.load(os.path.join(IMG_DIR, "DinoWallpaper.png"))
 
-
+DEAD = [
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDead.png"))
+]
 
 RUNNING = [
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun1.png")),
@@ -65,10 +67,26 @@ LARGE_CACTUS = [
 BIRD = [
     pygame.image.load(os.path.join(IMG_DIR, "Bird/Bird1.png")),
     pygame.image.load(os.path.join(IMG_DIR, "Bird/Bird2.png")),
+]
+
+RED_BIRD = [
     pygame.image.load(os.path.join(IMG_DIR, "Bird/RedBird1.png")),
     pygame.image.load(os.path.join(IMG_DIR, "Bird/RedBird2.png")),
+]
+
+BLUE_BIRD = [
     pygame.image.load(os.path.join(IMG_DIR, "Bird/BlueBird1.png")),
     pygame.image.load(os.path.join(IMG_DIR, "Bird/BlueBird2.png")),
+]
+
+YELLOW_BIRD = [
+    pygame.image.load(os.path.join(IMG_DIR, "Bird/YellowBird1.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Bird/YellowBird2.png")),
+]
+
+ORANGE_BIRD = [
+    pygame.image.load(os.path.join(IMG_DIR, "Bird/OrangeBird1.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Bird/OrangeBird2.png")),
 ]
 
 CLOUD = pygame.image.load(os.path.join(IMG_DIR, 'Other/Cloud.png'))
@@ -76,6 +94,8 @@ SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
 HAMMER = pygame.image.load(os.path.join(IMG_DIR, 'Other/hammer.png'))
 
 BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track4.png'))
+
+END_BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/game_over.jpg'))
 
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 

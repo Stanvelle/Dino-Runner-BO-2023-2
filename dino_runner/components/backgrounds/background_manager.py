@@ -1,4 +1,4 @@
-from dino_runner.components.backgrounds.birds import Birds
+from dino_runner.components.obstacles.birds import Birds
 from dino_runner.components.backgrounds.cloud import Cloud
 
 

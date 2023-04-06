@@ -5,6 +5,7 @@ from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 from dino_runner.components.backgrounds.background_manager import BackgroundManager
 from dino_runner.components.power_ups.power_up_manager import PowerUpManager
 from dino_runner.components import text_utils
+from dino_runner.utils.constants import DEAD
 
 class Game:
     def __init__(self):
@@ -26,6 +27,7 @@ class Game:
         self.power_up_manager = PowerUpManager()
         self.points = 0
         self.death_counter = 0
+        self.max = 0
 
 
     def run(self):
@@ -60,8 +62,10 @@ class Game:
             if self.points % 200 == 0:
                 self.game_speed += 1
             if self.player.dino_dead:
+                self.player.image = DEAD
                 self.playing = False
                 self.death_counter +=1
+                pygame.time.delay(1000)
 
     def draw(self):
         if self.playing:
@@ -101,10 +105,17 @@ class Game:
             text, text_rect = text_utils.get_message("Press any key to start!", 30, )
             self.screen.blit(text,text_rect)
         else:
-            text, text_rect = text_utils.get_message("Press any key to Restart!", 30, )
-            score, score_rect = text_utils.get_message("Your score is " + str(self.points), 30, height = SCREEN_HEIGHT//2 + 50)
+            if self.points > self.max:
+                self.max = self.points
+            text, text_rect = text_utils.get_message("Press any key to Restart!", 30, height = SCREEN_HEIGHT//2 - 50)
+            score, score_rect = text_utils.get_message("Your score is " + str(self.points), 30, height = SCREEN_HEIGHT//2 - 5)
+            deaths, deaths_rect = text_utils.get_message("Deaths = " + str(self.death_counter), 30, height = SCREEN_HEIGHT//2 + 40)
+            max, max_rect = text_utils.get_message("Your max score is " + str(self.max), 30, height = SCREEN_HEIGHT//2 + 85)
+            self.screen.blit(max,max_rect)
             self.screen.blit(text,text_rect)
             self.screen.blit(score,score_rect)
+            self.screen.blit(deaths,deaths_rect)
+            
 
     def reset(self):
         self.game_speed = 20
