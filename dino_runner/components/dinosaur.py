@@ -2,7 +2,7 @@ import pygame
 from dino_runner.utils.constants import (RUNNING, RUNNING_SHIELD, DUCKING, DUCKING_SHIELD, 
                                          JUMPING, JUMPING_SHIELD, DEFAULT_TYPE, SHIELD_TYPE, 
                                          RUNNING_HAMMER, DUCKING_HAMMER, JUMPING_HAMMER, HAMMER_TYPE,
-                                         DIVING, DIVING_HAMMER, DIVING_SHIELD)
+                                         DIVING, DIVING_HAMMER, DIVING_SHIELD, DEAD)
 
 class Dinosaur:
     X_POS = 80
@@ -145,10 +145,13 @@ class Dinosaur:
 
         elif power_up.type == HAMMER_TYPE:
            self.type = HAMMER_TYPE
+           self.hammer = True
+           self.time_up_power_up = power_up.time_up
 
     def reset(self):
         self.type = DEFAULT_TYPE
         self.shield = False
+        self.hammer = False
         self.time_up_power_up = 0
 
     def superjump(self):

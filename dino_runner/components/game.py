@@ -1,11 +1,10 @@
 import pygame
-from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
+from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEAD
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 from dino_runner.components.backgrounds.background_manager import BackgroundManager
 from dino_runner.components.power_ups.power_up_manager import PowerUpManager
 from dino_runner.components import text_utils
-from dino_runner.utils.constants import DEAD
 
 class Game:
     def __init__(self):
@@ -32,7 +31,7 @@ class Game:
 
     def run(self):
         bg_Music = pygame.mixer.Sound("dino_runner/assets/Ost/melody-loop.mp3")
-        bg_Music.play()
+        #bg_Music.play()
         # Game loop: events - update - draw
         self.running = True
         while self.running:
@@ -62,10 +61,8 @@ class Game:
             if self.points % 200 == 0:
                 self.game_speed += 1
             if self.player.dino_dead:
-                self.player.image = DEAD
                 self.playing = False
                 self.death_counter +=1
-                pygame.time.delay(1000)
 
     def draw(self):
         if self.playing:
