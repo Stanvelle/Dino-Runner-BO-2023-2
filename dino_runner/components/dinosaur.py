@@ -36,23 +36,35 @@ class Dinosaur:
         self.fly_vel = self.FLY_VEL
         self.dino_dead = False
         self.check_dead = False
-        self.jump_sound = pygame.mixer.Sound("dino_runner/assets/Sounds/jump_sound.wav")
-        self.jump_sound.set_volume(0.5)
+        self.jump_sfx = pygame.mixer.Sound("dino_runner/assets/Sounds/jump_sound.wav")
+        self.jump_sfx.set_volume(0.5)
+        self.dive_sfx = pygame.mixer.Sound("dino_runner/assets/Sounds/dive_sound2.wav")
+        self.dive_sfx.set_volume(0.5)
         self.shield = False
         self.hammer = False
         self.time_up_power_up = 0
+        self.jump_sound = False
+        self.dive_sound = False
 
     def update(self, user_input):
         if self.dino_jump:
             self.jump()
+            if not self.jump_sound:
+                self.jump_sfx.play()
+                self.jump_sound = True
         if self.dino_superjump:
             self.superjump()
         if self.dino_duck:
             self.duck()
         if self.dino_run:
             self.run()
+            self.jump_sound = False
+            self.dive_sound = False
         if self.dino_dive:
             self.dive()
+            if not self.dive_sound:
+                self.dive_sfx.play()
+                self.dive_sound = True
         if self.dino_fly:
             self.fly()
 
@@ -112,7 +124,6 @@ class Dinosaur:
                 self.reset()
 
     def draw(self, screen):
-        #self.image = DEAD[0]
         screen.blit(self.image, self.dino_rect)
 
     def run(self):

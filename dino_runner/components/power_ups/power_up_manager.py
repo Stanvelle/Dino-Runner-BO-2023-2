@@ -1,10 +1,12 @@
 from dino_runner.components.power_ups.shield import Shield
 from dino_runner.components.power_ups.hammer import Hammer
 import random
+import pygame
 
 class PowerUpManager():
     def __init__(self):
         self.power_ups = []
+        self.power_up_sfx = pygame.mixer.Sound("dino_runner/assets/Sounds/power_up_pick.wav")
 
     def update(self,game_speed,points,player):
         self.choice = 1#random.randint(0,1)
@@ -19,6 +21,7 @@ class PowerUpManager():
                 self.power_ups.pop()
             if power_up.used:
                 player.set_power_up(power_up)
+                self.power_up_sfx.play()
             power_up.update(game_speed, player)
 
     def draw(self, screen):

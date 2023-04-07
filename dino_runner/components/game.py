@@ -68,6 +68,11 @@ class Game:
                 self.end_bg_Music.play()
                 self.playing = False
                 self.death_counter +=1
+                self.image = DEAD[0]
+                self.player.draw(self.screen)
+                pygame.time.delay(500)
+                self.player.draw(self.screen)
+                pygame.time.delay(500)
 
     def draw(self):
         if self.playing:
