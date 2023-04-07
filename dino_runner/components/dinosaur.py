@@ -35,6 +35,7 @@ class Dinosaur:
         self.dive_vel = self.DIVE_VEL
         self.fly_vel = self.FLY_VEL
         self.dino_dead = False
+        self.check_dead = False
         self.jump_sound = pygame.mixer.Sound("dino_runner/assets/Sounds/jump_sound.wav")
         self.jump_sound.set_volume(0.5)
         self.shield = False
@@ -111,6 +112,7 @@ class Dinosaur:
                 self.reset()
 
     def draw(self, screen):
+        #self.image = DEAD[0]
         screen.blit(self.image, self.dino_rect)
 
     def run(self):

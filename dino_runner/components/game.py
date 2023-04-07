@@ -27,11 +27,12 @@ class Game:
         self.points = 0
         self.death_counter = 0
         self.max = 0
+        self.bg_Music = pygame.mixer.Sound("dino_runner/assets/Ost/main_ost.mp3")
+        self.end_bg_Music = pygame.mixer.Sound("dino_runner/assets/Ost/end_ost.mp3")
 
 
     def run(self):
-        bg_Music = pygame.mixer.Sound("dino_runner/assets/Ost/melody-loop.mp3")
-        #bg_Music.play()
+
         # Game loop: events - update - draw
         self.running = True
         while self.running:
@@ -48,6 +49,8 @@ class Game:
                 pygame.quit()
             if event.type == pygame.KEYDOWN and not self.playing:
                 self.playing = True
+                self.end_bg_Music.stop()
+                self.bg_Music.play()
                 self.reset()
 
     def update(self):
@@ -61,6 +64,8 @@ class Game:
             if self.points % 200 == 0:
                 self.game_speed += 1
             if self.player.dino_dead:
+                self.bg_Music.stop()
+                self.end_bg_Music.play()
                 self.playing = False
                 self.death_counter +=1
 
