@@ -1,5 +1,5 @@
 import pygame
-from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEAD
+from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEAD, END_BG
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 from dino_runner.components.backgrounds.background_manager import BackgroundManager
@@ -18,6 +18,8 @@ class Game:
         self.game_speed = 20
         self.x_pos_bg = 0
         self.y_pos_bg = -70 #-70 #380
+        self.x_pos_bg2 = -950
+        self.y_pos_bg2 = -70
         self.x_pos_cl = 200
         self.y_pos_cl = 180
         self.player = Dinosaur()
@@ -32,7 +34,6 @@ class Game:
         self.end_bg_Music = pygame.mixer.Sound("dino_runner/assets/Ost/end_ost.mp3")
 
     def run(self):
-
         # Game loop: events - update - draw
         self.running = True
         while self.running:
@@ -63,6 +64,7 @@ class Game:
             self.points += 1 
             if self.points % 200 == 0:
                 self.game_speed += 1
+                self.player.score_sfx.play()
             if self.player.allow_dead:
                 self.bg_Music.stop()
                 self.player.image = DEAD[self.dead_check]
@@ -110,9 +112,16 @@ class Game:
         if self.player.left > 0:
             self.screen.blit(power, power_rect)
 
+
     def draw_menu(self):
-        white_color = (255, 255, 255)
-        self.screen.fill(white_color)
+        if self.player.dino_dead:
+            white_color = (255, 255, 255)
+            self.screen.fill(white_color)
+            image_width = END_BG.get_width()
+            self.screen.blit(END_BG, (image_width + self.x_pos_bg2, self.y_pos_bg2))
+        else:
+            white_color = (255, 255, 255)
+            self.screen.fill(white_color)
         self.print_menu_element()
 
     def print_menu_element(self):
@@ -122,10 +131,10 @@ class Game:
         else:
             if self.points > self.max:
                 self.max = self.points
-            text, text_rect = text_utils.get_message("Press any key to Restart!", 30, height = SCREEN_HEIGHT//2 - 50)
-            score, score_rect = text_utils.get_message("Your score is " + str(self.points), 30, height = SCREEN_HEIGHT//2 - 5)
-            deaths, deaths_rect = text_utils.get_message("Deaths = " + str(self.death_counter), 30, height = SCREEN_HEIGHT//2 + 40)
-            max, max_rect = text_utils.get_message("Your max score is " + str(self.max), 30, height = SCREEN_HEIGHT//2 + 85)
+            text, text_rect = text_utils.get_message("Press any key to Restart!", 30, height = SCREEN_HEIGHT//2 - 10)
+            score, score_rect = text_utils.get_message("Your score is " + str(self.points), 30, height = SCREEN_HEIGHT//2 +35)
+            deaths, deaths_rect = text_utils.get_message("Deaths = " + str(self.death_counter), 30, height = SCREEN_HEIGHT//2 + 80)
+            max, max_rect = text_utils.get_message("Your max score is " + str(self.max), 30, height = SCREEN_HEIGHT//2 + 125)
             self.screen.blit(max,max_rect)
             self.screen.blit(text,text_rect)
             self.screen.blit(score,score_rect)

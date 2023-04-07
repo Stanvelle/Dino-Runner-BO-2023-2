@@ -39,6 +39,8 @@ class Dinosaur:
         self.jump_sfx = pygame.mixer.Sound("dino_runner/assets/Sounds/jump_sound.wav")
         self.dive_sfx = pygame.mixer.Sound("dino_runner/assets/Sounds/dive_sound2.wav")
         self.death_sfx = pygame.mixer.Sound("dino_runner/assets/Sounds/death.mp3")
+        self.score_sfx = pygame.mixer.Sound("dino_runner/assets/Sounds/score_up.flac")
+        self.death_sfx.set_volume(4)
         self.shield = False
         self.hammer = False
         self.time_up_power_up = 0
