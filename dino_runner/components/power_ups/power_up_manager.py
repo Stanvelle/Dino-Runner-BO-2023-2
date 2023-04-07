@@ -9,7 +9,7 @@ class PowerUpManager():
         self.power_up_sfx = pygame.mixer.Sound("dino_runner/assets/Sounds/power_up_pick.wav")
 
     def update(self,game_speed,points,player):
-        self.choice = 1#random.randint(0,1)
+        self.choice = random.randint(0,1)
         if self.choice == 0:
             self.select = Shield()
         else:

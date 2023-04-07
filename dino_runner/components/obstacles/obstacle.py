@@ -12,7 +12,7 @@ class Obstacle:
         if self.rect.colliderect(player.dino_rect):
             if not player.shield:
                 if not player.hammer:
-                    player.dino_dead = True
+                    player.allow_dead = True
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)

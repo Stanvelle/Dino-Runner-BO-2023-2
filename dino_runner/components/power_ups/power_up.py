@@ -1,4 +1,4 @@
-import pygame
+import pygame,random
 from dino_runner.utils.constants import SCREEN_WIDTH
 
 class PowerUp:
@@ -9,7 +9,7 @@ class PowerUp:
         self.image = image
         self.type = type
         self.rect = self.image.get_rect()
-        self.rect.x = SCREEN_WIDTH
+        self.rect.x = SCREEN_WIDTH+random.randint(0,2200)
         self.rect.y = self.Y_POS_POWER_UP
         self.start_time = 0
         self.time_up = 0

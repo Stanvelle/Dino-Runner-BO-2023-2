@@ -26,10 +26,10 @@ class Game:
         self.power_up_manager = PowerUpManager()
         self.points = 0
         self.death_counter = 0
+        self.dead_check = 0
         self.max = 0
         self.bg_Music = pygame.mixer.Sound("dino_runner/assets/Ost/main_ost.mp3")
         self.end_bg_Music = pygame.mixer.Sound("dino_runner/assets/Ost/end_ost.mp3")
-
 
     def run(self):
 
@@ -63,16 +63,20 @@ class Game:
             self.points += 1 
             if self.points % 200 == 0:
                 self.game_speed += 1
-            if self.player.dino_dead:
+            if self.player.allow_dead:
                 self.bg_Music.stop()
-                self.end_bg_Music.play()
-                self.playing = False
-                self.death_counter +=1
-                self.image = DEAD[0]
-                self.player.draw(self.screen)
-                pygame.time.delay(500)
-                self.player.draw(self.screen)
-                pygame.time.delay(500)
+                self.player.image = DEAD[self.dead_check]
+                if self.player.death_sound == False:
+                    self.player.death_sfx.play()
+                    self.player.death_sound = True
+                self.dead_check +=1
+                self.points -=1
+                pygame.time.delay(1000)
+                if self.dead_check >=2:
+                    self.death_counter +=1
+                    self.playing = False
+                    self.end_bg_Music.play()
+                    self.player.dino_dead = True
 
     def draw(self):
         if self.playing:
@@ -99,8 +103,12 @@ class Game:
         self.x_pos_bg -= self.game_speed
     
     def draw_score (self):
+        self.time = self.player.left+1
         score, score_rect = text_utils.get_message('Points: ' + str(self.points), 20, 1000, 40)
+        power, power_rect = text_utils.get_message('Power Up Time Left: ' + str(self.player.left), 20, 130, 40)
         self.screen.blit(score, score_rect)
+        if self.player.left > 0:
+            self.screen.blit(power, power_rect)
 
     def draw_menu(self):
         white_color = (255, 255, 255)
@@ -122,7 +130,6 @@ class Game:
             self.screen.blit(text,text_rect)
             self.screen.blit(score,score_rect)
             self.screen.blit(deaths,deaths_rect)
-            
 
     def reset(self):
         self.game_speed = 20
@@ -131,3 +138,5 @@ class Game:
         self.background_manager = BackgroundManager()
         self.power_up_manager = PowerUpManager()
         self.points = 0
+        self.dead_check = 0
+        self.death_sound = False
